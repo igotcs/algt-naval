@@ -42,7 +42,18 @@ int main() {
                 int l;
                 char c;
                 char d;
-                char n[3][20]={"Cruzeiro do Kaka","Charles","Bote"};
+                 struct n {
+        char nav[50];
+        int tamanho;
+    }
+    
+    struct n navio[3];
+    navio[0].nav = "Cruzeiro do Kaká";
+    navio[1].nav = "Charles";
+    navio[2].nav = "Bote";
+    navio[0].tamanho = 4;
+    navio[1].tamanho = 3;
+    navio[2].tamanho = 2;
                 printf("\n%s, posicione navio %s (linha 0-9 coluna A-F, direcao H/V, tamanho %d): ", nome1, i++, 2+i);
                 scanf("%d %c %c", &l, &c, &d);
                 posicionarNavio(tabuleiro1, 2+i, d, l, c);
