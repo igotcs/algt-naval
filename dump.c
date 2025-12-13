@@ -4,10 +4,9 @@
 void menu();
 
 int main() {
-    int opt = 0;
+    int opt;
 
     while (1) {
-        do {
         menu();
         printf("ESCOLHA UMA OPÇÃO: ");
         scanf("%d", &opt);
@@ -23,7 +22,7 @@ int main() {
             // futuramente: carregar arquivo
         } 
         else if (opt == 3) {
-            system("clear")
+            system("clear");
             printf("[ INSTRUÇÕES ]\n");
              printf("o Objetivo do Jogo: Afundar todos os navios inimigos\n");
         printf("o Cada jogador começa o jogo posicionando seus navios em um tabuleiro com 10x10,\n" 
@@ -40,7 +39,7 @@ int main() {
         printf("o Após cada tiro a tela mostrará uma resposta:\n"
         "1. Água\n"
         "2. Acertou\n");
-        printf("o Quando um navio for afundado, aparecerá "Afundou" na tela\n\n\n");
+        printf("o Quando um navio for afundado, aparecerá 'Afundou na tela\n\n\n'");
         printf("0 0 0   0 0 0 0  0      0          0  0 0 0 0  0 0 0 0  0 0 0 0    000\n" 
                "0    0  0     0  0 0  0 0          0  0     0  0        0     0    000\n"
                "0 0 0   0     0  0  00  0          0  0     0  0   0 0  0     0    000\n" 
@@ -49,13 +48,12 @@ int main() {
         }
         else if (opt==4) {
             printf("SAINDO...");
-            system("clear");
+            break;}
         else {
-            printf("OPCAO INVALIDA!\n");
-            
+            printf("Opcao invalida!\n");
         }
     }
-        } while (opt != 4);
+
     return 0;
 }
 
@@ -84,8 +82,6 @@ void menu() {
     printf("3 - INTRUÇÕES\n");
     printf("4 - SAIR\n");
 }
-
-
 
 
 
