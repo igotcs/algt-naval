@@ -10,9 +10,10 @@ int main() {
     char linha = '1', coluna = 'A';
     for (int i = 0; i < 10; i++) {
     for (int j = 0; j < 10; j++) {
-        for (int k = 0; k < 2; k++){
-        tabuleiro[i][j] = 
-            }
+        tabuleiro[i][j][0] = linha 
+
+        tabuleiro[i][j][1] = coluna
+            
     }
 }
 
@@ -93,6 +94,7 @@ void menu() {
     printf("3 - INTRUÇÕES\n");
     printf("4 - SAIR\n");
 }
+
 
 
 
