@@ -4,9 +4,10 @@
 void menu();
 
 int main() {
-    int opt;
+    int opt = 0;
 
     while (1) {
+        do {
         menu();
         printf("ESCOLHA UMA OPÇÃO: ");
         scanf("%d", &opt);
@@ -48,12 +49,13 @@ int main() {
         }
         else if (opt==4) {
             printf("SAINDO...");
-            break;
+            system("clear");
         else {
-            printf("Opcao invalida!\n");
+            printf("OPCAO INVALIDA!\n");
+            
         }
     }
-
+        } while (opt != 4);
     return 0;
 }
 
@@ -82,6 +84,7 @@ void menu() {
     printf("3 - INTRUÇÕES\n");
     printf("4 - SAIR\n");
 }
+
 
 
 
