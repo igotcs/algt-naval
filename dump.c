@@ -39,13 +39,16 @@ int main() {
         printf("o Após cada tiro a tela mostrará uma resposta:\n"
         "1. Água\n"
         "2. Acertou\n");
-        printf('o Quando um navio for afundado, aparecerá "Afundou" na tela\n\n\n');
+        printf("o Quando um navio for afundado, aparecerá "Afundou" na tela\n\n\n");
         printf("0 0 0   0 0 0 0  0      0          0  0 0 0 0  0 0 0 0  0 0 0 0    000\n" 
                "0    0  0     0  0 0  0 0          0  0     0  0        0     0    000\n"
                "0 0 0   0     0  0  00  0          0  0     0  0   0 0  0     0    000\n" 
                "0    0  0     0  0      0    0     0  0     0  0     0  0     0    000\n"
                "0 0 0   0 0 0 0  0      0    0 0 0 0  0 0 0 0  0 0 0 0  0 0 0 0     0\n");
-        } 
+        }
+        else if (opt==4) {
+            printf("SAINDO...");
+            break;
         else {
             printf("Opcao invalida!\n");
         }
@@ -79,6 +82,7 @@ void menu() {
     printf("3 - INTRUÇÕES\n");
     printf("4 - SAIR\n");
 }
+
 
 
 
