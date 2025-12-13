@@ -8,7 +8,8 @@ int main() {
     struct ponto {
             int linha;
             char coluna;}
-        
+     struct ponto j1[3];
+     struct ponto j2[3];
     char tabuleiro[10][10];
     char linha = '1', coluna = 'A';
     for (int i = 0; i < 10; i++) {
@@ -96,6 +97,7 @@ void menu() {
     printf("3 - INTRUÇÕES\n");
     printf("4 - SAIR\n");
 }
+
 
 
 
