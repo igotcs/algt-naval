@@ -5,8 +5,11 @@ void menu();
 
 int main() {
     int opt;
-    
-    char tabuleiro[10][10][2];
+    struct ponto {
+            int linha;
+            char coluna;}
+        
+    char tabuleiro[10][10];
     char linha = '1', coluna = 'A';
     for (int i = 0; i < 10; i++) {
     for (int j = 0; j < 10; j++) {
@@ -93,6 +96,7 @@ void menu() {
     printf("3 - INTRUÇÕES\n");
     printf("4 - SAIR\n");
 }
+
 
 
 
