@@ -8,23 +8,43 @@ int main() {
 
     while (1) {
         menu();
-        printf("escolha uma opcao: ");
+        printf("ESCOLHA UMA OPÇÃO: ");
         scanf("%d", &opt);
 
         if (opt == 1) {
             system("clear");
-            printf("[ novo jogo ]\n");
+            printf("[ NOVO JOGO ]\n");
             // futuramente: iniciar tabuleiros, pedir nomes, posicionar navios
         } 
         else if (opt == 2) {
             system("clear");
-            printf("[ continuar jogo ]\n");
+            printf("[ CONTINUAR JOGO ]\n");
             // futuramente: carregar arquivo
         } 
         else if (opt == 3) {
             system("clear")
-            printf("fechando...\n");
-            break;
+            printf("[ INSTRUÇÕES ]\n");
+             printf("o Objetivo do Jogo: Afundar todos os navios inimigos\n");
+        printf("o Cada jogador começa o jogo posicionando seus navios em um tabuleiro com 10x10,\n" 
+            "no qual as linhas são letras (de A a J), e as colunas são números(de 1 a 10). ");
+        printf("o Os tipos de embarcação são os seguintes:\n"
+            "1. Porta-aviões – 4 células\n"
+            "2. Navio-tanque – 3 células\n"
+            "3. Submarino – 2 células(2 unidades)\n"
+            "4. Bote – 1 célula(3 unidades)\n");
+        printf("o Duas embarcações não podem ocupar uma mesma célula\n");
+        printf("o Uma embarcação não pode ser posicionada fora do tabuleiro\n");
+        printf("o Após o inicio do jogo, cada jogador terá acesso ao tabuleiro organizado pelo adversário,\n"
+            "com os navios escondidos.Os jogadores se revezam em turnos para atirar nos navios adversários\n");
+        printf("o Após cada tiro a tela mostrará uma resposta:\n"
+        "1. Água\n"
+        "2. Acertou\n");
+        printf('o Quando um navio for afundado, aparecerá "Afundou" na tela\n\n\n');
+        printf("0 0 0   0 0 0 0  0      0          0  0 0 0 0  0 0 0 0  0 0 0 0    000\n" 
+               "0    0  0     0  0 0  0 0          0  0     0  0        0     0    000\n"
+               "0 0 0   0     0  0  00  0          0  0     0  0   0 0  0     0    000\n" 
+               "0    0  0     0  0      0    0     0  0     0  0     0  0     0    000\n"
+               "0 0 0   0 0 0 0  0      0    0 0 0 0  0 0 0 0  0 0 0 0  0 0 0 0     0\n");
         } 
         else {
             printf("Opcao invalida!\n");
@@ -56,9 +76,10 @@ void menu() {
            "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("1 - NOVO JOGO\n");
     printf("2 - CONTINUAR JOGO\n");
-    printf("3 - INTRUÇOES\n");
+    printf("3 - INTRUÇÕES\n");
     printf("4 - SAIR\n");
 }
+
 
 
 
