@@ -9,7 +9,7 @@ int N = 10;
 void menu();
 void inicializarTabuleiro(char tabuleiro[N][N]);
 void imprimirTabuleiro(char tabuleiro[N][N], int revelarNavios);
-void posicionarNavio(char tabuleiro[N][N], int tamanho, char direcao, int linha, int coluna);
+void posicionarNavio(char tabuleiro[N][N], int tamanho, char letra, char direcao, int linha, int coluna);
 int atacar(char tabuleiro[N][N], int linha, int coluna);
 void salvarResultados(char nome1[], char nome2[], int acertos1, int acertos2, int erros1, int erros2, int rodadas);
 
