@@ -39,15 +39,15 @@ int main() {
              struct n {
         char nav[50];
         int tamanho;
-    }
+    };
     struct n navio[3];
-    navio[0].nav = "Cruzeiro do Kaká";
-    navio[1].nav = "Charles";
-    navio[2].nav = "Bote";
+    strcpy (navio[0].nav, "Cruzeiro do Kaká");
+    strcpy (navio[1].nav, "Charles");
+    strcpy (navio[2].nav, "Bote");
     navio[0].tamanho = 4;
     navio[1].tamanho = 3;
     navio[2].tamanho = 2;
-            int linha,coluna,convchar=65;
+            int linha, coluna, convchar = 65;
                 char c;
                 char d;
             // posicionamento manual de navios (exemplo 3 navios por jogador)
@@ -55,7 +55,7 @@ int main() {
                 printf("\n%s, posicione navio %s (linha 1-10 coluna A-J, direcao H/V, tamanho %d): ", nome1, navio[i].nav, navio[i].tamanho);
                 scanf("%d %c %c", &linha, &c, &d);
                 coluna = c - convchar;
-                linha += -1
+                linha += -1;
                 posicionarNavio(tabuleiro1, navio[i].tamanho, d, linha, coluna);
             }
 
@@ -63,7 +63,7 @@ int main() {
                 printf("\n%s, posicione navio %s (linha 1-10 coluna A-J, direcao H/V, tamanho %d): ", nome2, navio[i].nav, navio[i].tamanho);
                 scanf("%d %c %c", &linha, &c, &d);
                 coluna = c - convchar;
-                linha += -1
+                linha += -1;
                 posicionarNavio(tabuleiro2, navio[i].tamanho, d, linha, coluna);
             }
 
@@ -180,7 +180,7 @@ void imprimirTabuleiro(char tabuleiro[N][N], int revelarNavios) {
 }
 
 void posicionarNavio(char tabuleiro[N][N], int tamanho, char direcao, int linha, int coluna) {
-    if(direcao=='H') {
+    if(direcao =='H') {
         if(coluna+tamanho>N) { printf("Navio nao cabe!\n"); return; }
         for(int i=0;i<tamanho;i++) if(tabuleiro[linha][coluna+i]=='S'){printf("Espaco ocupado!\n"); return;}
         for(int i=0;i<tamanho;i++) tabuleiro[linha][coluna+i]='S';
@@ -217,7 +217,6 @@ void salvarResultados(char nome1[], char nome2[], int acertos1, int acertos2, in
     fclose(fp);
     printf("Resultados salvos em resultado.txt\n");
 }
-
 
 
 
