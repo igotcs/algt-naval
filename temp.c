@@ -116,14 +116,35 @@ int main() {
             printf("[ CONTINUAR JOGO ] - Ainda nao implementado\n");
         } 
         else if (opt == 3) {
-            printf("[ INSTRUCOES ]\nBatalha naval: afunde todos os navios adversarios.\n");
-        } 
+            system("clear");
+            printf("[ INSTRUÇÕES ]\n");
+             printf("o Objetivo do Jogo: Afundar todos os navios inimigos\n");
+        printf("o Cada jogador começa o jogo posicionando seus navios em um tabuleiro com 10x10,\n" 
+            "no qual as linhas são letras (de A a J), e as colunas são números(de 1 a 10). ");
+        printf("o Os tipos de embarcação são os seguintes:\n"
+            "1. Cruzeiro do Kaka – 4 células\n"
+            "2. Charles – 3 células\n"
+            "3. Bote – 2 células\n");
+        printf("o Duas embarcações não podem ocupar uma mesma célula\n");
+        printf("o Uma embarcação não pode ser posicionada fora do tabuleiro\n");
+        printf("o Após o inicio do jogo, cada jogador terá acesso ao tabuleiro organizado pelo adversário,\n"
+            "com os navios escondidos.Os jogadores se revezam em turnos para atirar nos navios adversários\n");
+        printf("o Após cada tiro a tela mostrará uma resposta:\n"
+        "1. Água\n"
+        "2. Acertou\n");
+        printf("o Quando um navio for afundado, aparecerá 'Afundou na tela\n\n\n'");
+        printf("0 0 0   0 0 0 0  0      0          0  0 0 0 0  0 0 0 0  0 0 0 0    000\n" 
+               "0    0  0     0  0 0  0 0          0  0     0  0        0     0    000\n"
+               "0 0 0   0     0  0  00  0          0  0     0  0   0 0  0     0    000\n" 
+               "0    0  0     0  0      0    0     0  0     0  0     0  0     0    000\n"
+               "0 0 0   0 0 0 0  0      0    0 0 0 0  0 0 0 0  0 0 0 0  0 0 0 0     0\n");
+}
         else if (opt == 4) {
             printf("Saindo...\n");
             break;
         } 
         else {
-            printf("Opcao invalida!\n");
+            printf("OPCAO INVALIDA!\n");
         }
     }
 
