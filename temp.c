@@ -18,7 +18,7 @@ int main() {
     char nome1[50], nome2[50];
     int opt;
     
-    if (opt!=4)
+    while (opt!=4){
         menu();
         printf("Escolha uma opcao:\n");
         scanf("%d", &opt);
@@ -90,7 +90,7 @@ int main() {
                     scanf("%d %d", &linha, &coluna);
                     int resultado = atacar(tabuleiro1, linha, coluna);
                     if (resultado) acertos2++; else erros2++;
-                    jogadorAtual = 1; //fim jogo
+                    jogadorAtual = 1; //fim
                 }
 
                 // verifica fim do jogo
@@ -137,17 +137,17 @@ int main() {
                "0 0 0   0     0  0  00  0          0  0     0  0   0 0  0     0    000\n" 
                "0    0  0     0  0      0    0     0  0     0  0     0  0     0    000\n"
                "0 0 0   0 0 0 0  0      0    0 0 0 0  0 0 0 0  0 0 0 0  0 0 0 0     0\n");
-}
+        }
         else if (opt == 4) {
             printf("SAINDO...\n");
-            
+            return 0;
         } 
         else {
             printf("OPCAO INVALIDA!\n");
         }
-        return 0;
+        
     }
-
+}
     
 
 
