@@ -68,7 +68,7 @@ int main() {
                 
                 if (c >= 'a') c -= 32;
                 if (d >= 'a') d -= 32;
-                posicionarNavio(tabuleiro1, navio[i].tamanho, d, linha-1, c - 'A');
+                posicionarNavio(tabuleiro1, navio[i].tamanho, navio[i].letra, d, linha-1, c - 'A');
             }
 
             // POSICIONAMENTO JOGADOR 2
