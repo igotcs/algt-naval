@@ -18,10 +18,11 @@ int main() {
     char nome1[50], nome2[50];
     int opt;
     
-    while(1) {
+    if (opt!=4)
         menu();
         printf("Escolha uma opcao:\n");
         scanf("%d", &opt);
+        getchar(); // consome \n
 
         if (opt == 1) {
             printf("[ NOVO JOGO ]\n");
@@ -71,11 +72,11 @@ int main() {
             int jogadorAtual = 1;
             int rodadas = 0;
             int acertos1 = 0, acertos2 = 0, erros1 = 0, erros2 = 0;
-            while(1) {
+            while(1){
                 rodadas++;
                 int linha, coluna;
                 if (jogadorAtual == 1) {
-                    printf("\nVez de %s\n", nome1);
+                    printf("\nVez de %s\n", nome1); //inicio jogo
                     imprimirTabuleiro(tabuleiro2, 0); // não revela navios
                     printf("Digite linha e coluna para atacar: ");
                     scanf("%d %d", &linha, &coluna);
@@ -89,7 +90,7 @@ int main() {
                     scanf("%d %d", &linha, &coluna);
                     int resultado = atacar(tabuleiro1, linha, coluna);
                     if (resultado) acertos2++; else erros2++;
-                    jogadorAtual = 1;
+                    jogadorAtual = 1; //fim jogo
                 }
 
                 // verifica fim do jogo
@@ -139,15 +140,16 @@ int main() {
 }
         else if (opt == 4) {
             printf("SAINDO...\n");
-            break;
+            
         } 
         else {
             printf("OPCAO INVALIDA!\n");
         }
+        return 0;
     }
 
-    return 0;
-}
+    
+
 
 // ---------- FUNCOES ----------
 
@@ -184,13 +186,16 @@ void inicializarTabuleiro(char tabuleiro[N][N]) {
 }
 
 void imprimirTabuleiro(char tabuleiro[N][N], int revelarNavios) {
+    int i;
+    int j;
     printf("  ");
-    for(int j=0;j<N;j++)  printf("%c ", 'A'+i);
+    for(j=0; j<N ;j++)  
+    printf("%c ", 'A'+ j);
     printf("\n");
-    for(int i=1;i<N+1;i++) {
-        printf("%d ",i);
-        for(int i=0;i<N;j++) {
-            if(tabuleiro[j][i]=='S' && !revelarNavios) printf("~ ");
+    for( i = 1 ; i<N+1 ; i++) {
+        printf("%d ", i);
+        for( i=0;i<N; i ++) {
+            if(tabuleiro[j][i]=='S' && !revelarNavios) printf("~");
             else printf("%c ", tabuleiro[j][i]);
         }
         printf("\n");
@@ -235,7 +240,6 @@ void salvarResultados(char nome1[], char nome2[], int acertos1, int acertos2, in
     fclose(fp);
     printf("Resultados salvos em resultado.txt\n");
 }
-
 
 
 
