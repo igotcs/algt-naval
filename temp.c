@@ -36,17 +36,10 @@ int main() {
             // inicializa tabuleiros
             inicializarTabuleiro(tabuleiro1);
             inicializarTabuleiro(tabuleiro2);
-
-            // posicionamento manual de navios (exemplo 3 navios por jogador)
-            for(int i=0; i<3; i++) {
-                int l;
-                char c;
-                char d;
-                 struct n {
+             struct n {
         char nav[50];
         int tamanho;
     }
-    
     struct n navio[3];
     navio[0].nav = "Cruzeiro do Kaká";
     navio[1].nav = "Charles";
@@ -54,19 +47,24 @@ int main() {
     navio[0].tamanho = 4;
     navio[1].tamanho = 3;
     navio[2].tamanho = 2;
-                printf("\n%s, posicione navio %s (linha 0-9 coluna A-F, direcao H/V, tamanho %d): ", nome1, navio[i].nav, navio[i].tamanho);
-                scanf("%d %c %c", &l, &c, &d);
-                posicionarNavio(tabuleiro1, 2+i, d, linha, coluna);
+            int linha,coluna,convchar=65;
+                char c;
+                char d;
+            // posicionamento manual de navios (exemplo 3 navios por jogador)
+            for(int i=0; i<3; i++) {
+                printf("\n%s, posicione navio %s (linha 1-10 coluna A-F, direcao H/V, tamanho %d): ", nome1, navio[i].nav, navio[i].tamanho);
+                scanf("%d %c %c", &linha, &c, &d);
+                coluna = c - convchar;
+                linha += -1
+                posicionarNavio(tabuleiro1, navio[i].tamanho, d, linha, coluna);
             }
 
             for(int i=0; i<3; i++) {
-                int linha,coluna;
-                char c;
-                char d;
-                char direcao;
-                printf("\n%s, posicione navio %s (linha 0-9 coluna A-F, direcao H/V, tamanho %d): ", nome2, navio[i].nav, navio[i].tamanho);
-                scanf("%d %c %c", &l, &c, &d);
-                posicionarNavio(tabuleiro2, 2+i, d, l, c);
+                printf("\n%s, posicione navio %s (linha 1-10 coluna A-F, direcao H/V, tamanho %d): ", nome2, navio[i].nav, navio[i].tamanho);
+                scanf("%d %c %c", &linha, &c, &d);
+                coluna = c - convchar;
+                linha += -1
+                posicionarNavio(tabuleiro2, navio[i].tamanho, d, linha, coluna);
             }
 
             // loop de jogo
@@ -220,4 +218,5 @@ void salvarResultados(char nome1[], char nome2[], int acertos1, int acertos2, in
     fclose(fp);
     printf("Resultados salvos em resultado.txt\n");
 }
+
 
