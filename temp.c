@@ -54,17 +54,17 @@ int main() {
     navio[0].tamanho = 4;
     navio[1].tamanho = 3;
     navio[2].tamanho = 2;
-                printf("\n%s, posicione navio %s (linha 0-9 coluna A-F, direcao H/V, tamanho %d): ", nome1, i++, 2+i);
+                printf("\n%s, posicione navio %s (linha 0-9 coluna A-F, direcao H/V, tamanho %d): ", nome1, navio[i].nav, navio[i].tamanho);
                 scanf("%d %c %c", &l, &c, &d);
-                posicionarNavio(tabuleiro1, 2+i, d, l, c);
+                posicionarNavio(tabuleiro1, 2+i, d, linha, coluna);
             }
 
             for(int i=0; i<3; i++) {
-                int l;
+                int linha,coluna;
                 char c;
                 char d;
                 char direcao;
-                printf("\n%s, posicione navio %s (linha 0-9 coluna A-F, direcao H/V, tamanho %d): ", nome2, i+1, 2+i);
+                printf("\n%s, posicione navio %s (linha 0-9 coluna A-F, direcao H/V, tamanho %d): ", nome2, navio[i].nav, navio[i].tamanho);
                 scanf("%d %c %c", &l, &c, &d);
                 posicionarNavio(tabuleiro2, 2+i, d, l, c);
             }
@@ -220,3 +220,4 @@ void salvarResultados(char nome1[], char nome2[], int acertos1, int acertos2, in
     fclose(fp);
     printf("Resultados salvos em resultado.txt\n");
 }
+
