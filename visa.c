@@ -90,7 +90,7 @@ int main() {
             int rodadas = 0, acertos1 = 0, acertos2 = 0, erros1 = 0, erros2 = 0;
             
             while(1) {
-                system("clear || cls");
+             
                 int l_ataque;
                 char c_ataque;
 
@@ -118,8 +118,8 @@ int main() {
                 // Verifica fim
                 int fim1=1, fim2=1;
                 for(int i=0;i<N;i++) for(int j=0;j<N;j++) {
-                    if(tabuleiro1[i][j]=='S') fim1=0;
-                    if(tabuleiro2[i][j]=='S') fim2=0;
+                    if(tabuleiro1[i][j] == 'K' || tabuleiro1[i][j] == 'C' || tabuleiro1[i][j] == 'B') fim1=0;
+                    if(tabuleiro2[i][j] == 'K' || tabuleiro2[i][j] == 'C' || tabuleiro2[i][j] == 'B') fim2=0;
                 }
                 if(fim1 || fim2) 
                 break;
@@ -177,7 +177,7 @@ void imprimirTabuleiro(char tabuleiro[N][N], int revelarNavios) {
     for(int i=0; i<N; i++) {
         printf("%2d ", i + 1);
         for(int j=0; j<N; j++) {
-            if(tabuleiro[i][j] == 'S' && !revelarNavios) printf("~ ");
+            if(tabuleiro[i][j] == 'K' || tabuleiro[i][j] == 'C' || tabuleiro[i][j] == 'B' && !revelarNavios) printf("~ ");
             else printf("%c ", tabuleiro[i][j]);
         }
         printf("\n");
@@ -185,14 +185,18 @@ void imprimirTabuleiro(char tabuleiro[N][N], int revelarNavios) {
 }
 
 void posicionarNavio(char tabuleiro[N][N], int tamanho, char letra, char direcao, int linha, int coluna) {
-    if(direcao =='H') {
+    if(direcao == 'H') {
         if(coluna+tamanho > N) return;
-        for(int i=0; i<tamanho; i++) if(tabuleiro[linha][coluna+i]!='~') return;
-        for(int i=0; i<tamanho; i++) tabuleiro[linha][coluna+i]= letra;
+        for(int i=0; i<tamanho; i++) 
+        if(tabuleiro[linha][coluna+i]!='~');
+        for(int i=0; i<tamanho; i++) 
+        tabuleiro[linha][coluna+i] = letra;
     } else {
         if(linha+tamanho > N) return;
-        for(int i=0; i<tamanho; i++) if(tabuleiro[linha+i][coluna]!='~') return;
-        for(int i=0; i<tamanho; i++) tabuleiro[linha+i][coluna]= letra;
+        for(int i=0; i<tamanho; i++) 
+        if(tabuleiro[linha+i][coluna]!='~');
+        for(int i=0; i<tamanho; i++) 
+        tabuleiro[linha+i][coluna] = letra;
     }
 }
 
@@ -201,7 +205,7 @@ int atacar(char tabuleiro[N][N], int linha, int coluna) {
     return 0;
 
     if(tabuleiro[linha][coluna] == 'K' || tabuleiro[linha][coluna] == 'C' || tabuleiro[linha][coluna] == 'B') {
-        tabuleiro[linha][coluna] = 'O';
+        tabuleiro[linha][coluna] == 'O';
         printf("\nACERTOU!\n");
         return 1;
     } else {
