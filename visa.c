@@ -200,7 +200,7 @@ int atacar(char tabuleiro[N][N], int linha, int coluna) {
     if (linha < 0 || linha >= N || coluna < 0 || coluna >= N) 
     return 0;
 
-    if(tabuleiro[linha][coluna] == 'S') {
+    if(tabuleiro[linha][coluna] == 'K' || tabuleiro[linha][coluna] == 'C' || tabuleiro[linha][coluna] == 'B') {
         tabuleiro[linha][coluna] = 'O';
         printf("\nACERTOU!\n");
         return 1;
