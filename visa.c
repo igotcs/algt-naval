@@ -17,6 +17,7 @@ void salvarResultados(char nome1[], char nome2[], int acertos1, int acertos2, in
 struct n {
     char nav[50];
     int tamanho;
+    char letra;
 };
 
 int main() {
@@ -31,6 +32,9 @@ int main() {
     navio[0].tamanho = 4;
     navio[1].tamanho = 3;
     navio[2].tamanho = 2;
+    navio[0].letra = 'K';
+    navio[1].letra = 'C';
+    navio[2].letra = 'B';
 
     while (opt != 4) {
         menu();
@@ -180,15 +184,15 @@ void imprimirTabuleiro(char tabuleiro[N][N], int revelarNavios) {
     }
 }
 
-void posicionarNavio(char tabuleiro[N][N], int tamanho, char direcao, int linha, int coluna) {
+void posicionarNavio(char tabuleiro[N][N], int tamanho, char letra, char direcao, int linha, int coluna) {
     if(direcao =='H') {
         if(coluna+tamanho > N) return;
-        for(int i=0; i<tamanho; i++) if(tabuleiro[linha][coluna+i]=='S') return;
-        for(int i=0; i<tamanho; i++) tabuleiro[linha][coluna+i]='S';
+        for(int i=0; i<tamanho; i++) if(tabuleiro[linha][coluna+i]!='~') return;
+        for(int i=0; i<tamanho; i++) tabuleiro[linha][coluna+i]= letra;
     } else {
         if(linha+tamanho > N) return;
-        for(int i=0; i<tamanho; i++) if(tabuleiro[linha+i][coluna]=='S') return;
-        for(int i=0; i<tamanho; i++) tabuleiro[linha+i][coluna]='S';
+        for(int i=0; i<tamanho; i++) if(tabuleiro[linha+i][coluna]!='~') return;
+        for(int i=0; i<tamanho; i++) tabuleiro[linha+i][coluna]= letra;
     }
 }
 
