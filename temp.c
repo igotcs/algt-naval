@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int N = 10;
+int N = 10; // referencia
 
 // ---------- declaramento de funcoes ----------
 void menu();
@@ -235,6 +235,7 @@ void salvarResultados(char nome1[], char nome2[], int acertos1, int acertos2, in
     fclose(fp);
     printf("Resultados salvos em resultado.txt\n");
 }
+
 
 
 
