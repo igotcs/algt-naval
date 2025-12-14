@@ -177,7 +177,7 @@ void imprimirTabuleiro(char tabuleiro[N][N], int revelarNavios) {
     for(int i=0; i<N; i++) {
         printf("%2d ", i + 1);
         for(int j=0; j<N; j++) {
-            if(tabuleiro[i][j] == 'K' || tabuleiro[i][j] == 'C' || tabuleiro[i][j] == 'B' && !revelarNavios) printf("~ ");
+            if((tabuleiro[i][j] == 'K' || tabuleiro[i][j] == 'C' || tabuleiro[i][j] == 'B') && !revelarNavios) printf("~ ");
             else printf("%c ", tabuleiro[i][j]);
         }
         printf("\n");
