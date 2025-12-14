@@ -135,7 +135,6 @@ int main() {
                "0    0  0     0  0 0  0 0          0  0     0  0        0     0    000\n"
                "0 0 0   0     0  0  00  0          0  0     0  0   0 0  0     0    000\n" 
                "0    0  0     0  0      0    0     0  0     0  0     0  0     0    000\n"
-
                "0 0 0   0 0 0 0  0      0    0 0 0 0  0 0 0 0  0 0 0 0  0 0 0 0     0\n");
 }
         else if (opt == 4) {
@@ -218,5 +217,6 @@ void salvarResultados(char nome1[], char nome2[], int acertos1, int acertos2, in
     fclose(fp);
     printf("Resultados salvos em resultado.txt\n");
 }
+
 
 
