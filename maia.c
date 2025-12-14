@@ -132,18 +132,32 @@ int main() {
             printf("\nPressione Enter para voltar ao menu...");
             getchar(); getchar();
 
-        } else if (opt == 3) {
-            system("clear || cls");
-            printf("[ INSTRUÇÕES ]\nAfunde os navios inimigos (S) acertando as coordenadas.\n");
-            printf("O = Acerto | X = Erro (Agua) | ~ = Desconhecido\n");
-            printf("\nPressione Enter para voltar...");
-            getchar();
+        } 
+             else if (opt == 3) {
+            system("clear");
+            printf("[ INSTRUÇÕES ]\n");
+             printf("o Objetivo do Jogo: Afundar todos os navios inimigos\n");
+        printf("o Cada jogador começa o jogo posicionando seus navios em um tabuleiro com 10x10,\n" 
+            "no qual as linhas são letras (de A a J), e as colunas são números(de 1 a 10). ");
+        printf("o Os tipos de embarcação são os seguintes:\n"
+            "1. Cruzeiro do Kaka – 4 células\n"
+            "2. Charles – 3 células\n"
+            "3. Bote – 2 células\n");
+        printf("o Duas embarcações não podem ocupar uma mesma célula\n");
+        printf("o Uma embarcação não pode ser posicionada fora do tabuleiro\n");
+        printf("o Após o inicio do jogo, cada jogador terá acesso ao tabuleiro organizado pelo adversário,\n"
+            "com os navios escondidos.Os jogadores se revezam em turnos para atirar nos navios adversários\n");
+        printf("o Após cada tiro a tela mostrará uma resposta:\n"
+        "1. Água\n"
+        "2. Acertou\n");
+        printf("o Quando um navio for afundado, aparecerá 'Afundou na tela\n\n\n'");
+ 
         }
     }
     return 0;
 }
 
-// ---------- IMPLEMENTAÇÃO DAS FUNÇÕES ----------
+// ---------- biblioteca funções ----------
 
 void inicializarTabuleiro(char tabuleiro[N][N]) {
     for(int i=0; i<N; i++)
@@ -179,7 +193,8 @@ void posicionarNavio(char tabuleiro[N][N], int tamanho, char direcao, int linha,
 }
 
 int atacar(char tabuleiro[N][N], int linha, int coluna) {
-    if (linha < 0 || linha >= N || coluna < 0 || coluna >= N) return 0;
+    if (linha < 0 || linha >= N || coluna < 0 || coluna >= N) 
+    return 0;
 
     if(tabuleiro[linha][coluna] == 'S') {
         tabuleiro[linha][coluna] = 'O';
@@ -200,5 +215,27 @@ void salvarResultados(char nome1[], char nome2[], int acertos1, int acertos2, in
 }
 
 void menu() {
-    printf("\n=== BATALHA NAVAL ===\n1 - NOVO JOGO\n2 - CONTINUAR\n3 - INSTRUCOES\n4 - SAIR\n");
+     printf("0 0 0   0 0 0 0  0 0 0 0  0 0 0 0  0        0     0  0 0 0 0\n" 
+           "0    0  0     0     0     0     0  0        0     0  0     0\n"
+           "0 0 0   0 0 0 0     0     0 0 0 0  0        0 0 0 0  0 0 0 0\n" 
+           "0    0  0     0     0     0     0  0        0     0  0     0\n"
+           "0 0 0   0     0     0     0     0  0 0 0 0  0     0  0     0\n");
+    printf("         0     0  0 0 0 0  0       0  0 0 0 0  0\n" 
+           "         0 0   0  0     0   0     0   0     0  0\n"
+           "         0  0  0  0 0 0 0    0   0    0 0 0 0  0\n" 
+           "         0   0 0  0     0     0 0     0     0  0\n"     
+           "         0     0  0     0      0      0     0  0 0 0 0\n");
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 0 00 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" 
+           "~~~~~~~~~~~~~~~~~~~~~~~~~~~ 00 00 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+           "~~~~~~~~~~~~~~~~~~~~~~~~~~ 000 00 0 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" 
+           "~~~~~~~~~~~~~~~~~~~~~~~~~ 0000 00 00 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+           "~~~~~~~~~~~~~~~~~~~~~~~ 000000 00 000 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"  
+           "~~~~~~~~~~~~~~~~~~~~~~ 0000000 00 0000 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n"
+           "~~~~~~~~~~~~~~ 0000000000000000000000000000 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" 
+           "~~~~~~~~~~~~~~~~ 000000000000000000000000 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+           "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    printf("1 - NOVO JOGO\n");
+    printf("2 - CONTINUAR JOGO\n");
+    printf("3 - INTRUÇÕES\n");
+    printf("4 - SAIR\n");
 }
