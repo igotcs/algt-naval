@@ -185,13 +185,13 @@ void inicializarTabuleiro(char tabuleiro[N][N]) {
 
 void imprimirTabuleiro(char tabuleiro[N][N], int revelarNavios) {
     printf("  ");
-    for(int j=0;j<N;j++) printf("%d ", j);
+    for(int j=0;j<N;j++)  printf("%c ", 'A'+i);
     printf("\n");
-    for(int i=0;i<N;i++) {
-        printf("%c ", 'A'+i);
-        for(int j=0;j<N;j++) {
-            if(tabuleiro[i][j]=='S' && !revelarNavios) printf("~ ");
-            else printf("%c ", tabuleiro[i][j]);
+    for(int i=1;i<N+1;i++) {
+        printf("%d ",i);
+        for(int i=0;i<N;j++) {
+            if(tabuleiro[j][i]=='S' && !revelarNavios) printf("~ ");
+            else printf("%c ", tabuleiro[j][i]);
         }
         printf("\n");
     }
@@ -235,6 +235,7 @@ void salvarResultados(char nome1[], char nome2[], int acertos1, int acertos2, in
     fclose(fp);
     printf("Resultados salvos em resultado.txt\n");
 }
+
 
 
 
