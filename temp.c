@@ -52,7 +52,7 @@ int main() {
                 char d;
             // posicionamento manual de navios (exemplo 3 navios por jogador)
             for(int i=0; i<3; i++) {
-                printf("\n%s, posicione navio %s (linha 1-10 coluna A-F, direcao H/V, tamanho %d): ", nome1, navio[i].nav, navio[i].tamanho);
+                printf("\n%s, posicione navio %s (linha 1-10 coluna A-J, direcao H/V, tamanho %d): ", nome1, navio[i].nav, navio[i].tamanho);
                 scanf("%d %c %c", &linha, &c, &d);
                 coluna = c - convchar;
                 linha += -1
@@ -60,7 +60,7 @@ int main() {
             }
 
             for(int i=0; i<3; i++) {
-                printf("\n%s, posicione navio %s (linha 1-10 coluna A-F, direcao H/V, tamanho %d): ", nome2, navio[i].nav, navio[i].tamanho);
+                printf("\n%s, posicione navio %s (linha 1-10 coluna A-J, direcao H/V, tamanho %d): ", nome2, navio[i].nav, navio[i].tamanho);
                 scanf("%d %c %c", &linha, &c, &d);
                 coluna = c - convchar;
                 linha += -1
@@ -217,6 +217,7 @@ void salvarResultados(char nome1[], char nome2[], int acertos1, int acertos2, in
     fclose(fp);
     printf("Resultados salvos em resultado.txt\n");
 }
+
 
 
 
