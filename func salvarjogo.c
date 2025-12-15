@@ -1,4 +1,4 @@
-int salvarJogo(char nome_pasta[],
+int salvarJogo(char nome_arquivo[],
                char tab1[10][10], char tab2[10][10],
                char nome1[], char nome2[],
                int jogadorAtual, int rodadas,
@@ -34,6 +34,6 @@ int salvarJogo(char nome_pasta[],
         fputc('\n', p);
     }
 
-    fclose(fp);
+    fclose(p);
     return 1;
 }
