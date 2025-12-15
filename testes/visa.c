@@ -190,7 +190,7 @@ int main() {
             else printf("Empate!\n");
 
             salvarResultados(nome1, nome2, acertos1, acertos2, erros1, erros2, rodadas);
-            printf("\nPressione "ENTER" para voltar ao menu...");
+            printf("\nPressione ENTER para voltar ao menu...");
             if (!fgets(ent, sizeof ent, stdin)) break;
 
         } else if (opt == 3) {
