@@ -234,9 +234,10 @@ int main() {
                  printf("o Após cada tiro a tela mostrará uma resposta:\n"
                  "1. Errou!\n"
                  "2. Acertou!\n");
-                 "2. Afundou, quando uma embarcacao adversario for totalmente destruida.\n");
+                 "3. Afundou, quando uma embarcacao adversario for totalmente destruida.\n");
                  printf("O jogo termina quando todos os navios de um dos dois jogadores forem destruidos.\n\n'");
 
         }
     }
+
 
