@@ -97,7 +97,7 @@ int main() {
                     printf("\nNavio: %s (Tamanho %d)\n", navio[i].nav, navio[i].tamanho);
                     printf("Digite Linha (1-10), Coluna (A-J) e Direcao (H/V): ");
                     if (!fgets(ent, sizeof ent, stdin)) return 0;
-                    if (sscanf(buf, "%d %c %c", &linha, &c, &d) != 3) {
+                    if (sscanf(ent, "%d %c %c", &linha, &c, &d) != 3) {
                         printf("ENTRADA INVALIDA!\n EXEMPLO DE ENTRADA: 5 B H\n");
                         continue;
                     }
