@@ -181,7 +181,7 @@ int main() {
                 if (fim1 || fim2) break;
 
                 printf("\nPressione Enter para passar a vez...");
-                if (!fgets(buf, sizeof buf, stdin)) break;
+                if (!fgets(ent, sizeof ent, stdin)) break;
             }
 
             printf("\n=== JOGO ENCERRADO ===\n");
