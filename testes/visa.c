@@ -62,6 +62,7 @@ int main() {
             char c, d;
 
             // POSICIONAMENTO JOGADOR 1
+            system("clear");
             for (int i = 0; i < 3; i++) {
                 int colocado = 0;
                 while (!colocado) {
@@ -89,6 +90,7 @@ int main() {
             }
 
             // POSICIONAMENTO JOGADOR 2
+            system("clear");
             for (int i = 0; i < 3; i++) {
                 int colocado = 0;
                 while (!colocado) {
