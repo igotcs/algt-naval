@@ -40,10 +40,10 @@ int main() {
 
     while (opt != 4) {
         menu();
-        printf("ESCOLHA UMA OPÇAO: ");
+        printf("ESCOLHA UMA OPCAO: ");
         if (!fgets(ent, sizeof ent, stdin)) break;
         if (sscanf(ent, "%d", &opt) != 1) {
-            printf("OPÇAO INVALIDA!\n");
+            printf("OPCAO INVALIDA!\n");
             continue;
         }
 
