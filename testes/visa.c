@@ -36,14 +36,14 @@ int main() {
     navio[1].letra = 'C';
     navio[2].letra = 'B';
 
-    char buf[128];
+    char ent[128];
 
     while (opt != 4) {
         menu();
         printf("ESCOLHA UMA OPÇAO: ");
-        if (!fgets(buf, sizeof buf, stdin)) break;
-        if (sscanf(buf, "%d", &opt) != 1) {
-            printf("Opcao invalida.\n");
+        if (!fgets(ent, sizeof ent, stdin)) break;
+        if (sscanf(ent, "%d", &opt) != 1) {
+            printf("OPÇAO INVALIDA!\n");
             continue;
         }
 
@@ -69,19 +69,19 @@ int main() {
                     imprimirTabuleiro(tabuleiro1, 1);
                     printf("\nNavio: %s (Tamanho %d)\n", navio[i].nav, navio[i].tamanho);
                     printf("Digite Linha (1-10), Coluna (A-J) e Direcao (H/V): ");
-                    if (!fgets(buf, sizeof buf, stdin)) return 0;
-                    if (sscanf(buf, "%d %c %c", &linha, &c, &d) != 3) {
-                        printf("Entrada invalida. Formato esperado: 5 B H\n");
+                    if (!fgets(ent, sizeof ent, stdin)) return 0;
+                    if (sscanf(ent, "%d %c %c", &linha, &c, &d) != 3) {
+                        printf("ENTRADA INVALIDA!\nEXEMPLO DE ENTRADA: 5 B H\n");
                         continue;
                     }
                     c = toupper((unsigned char)c);
                     d = toupper((unsigned char)d);
                     if (linha < 1 || linha > 10 || c < 'A' || c > 'J' || (d != 'H' && d != 'V')) {
-                        printf("Valores fora do intervalo. Linha 1-10, Coluna A-J, Direcao H ou V.\n");
+                        printf("VALORES FORA DO INTERVALO PERMITIDO!\nLinha 1-10, Coluna A-J, Direcao H ou V.\n");
                         continue;
                     }
                     if (!posicionarNavio(tabuleiro1, navio[i].tamanho, navio[i].letra, d, linha - 1, c - 'A')) {
-                        printf("Nao foi possivel posicionar o navio nessa posicao (sobreposicao ou fora do tabuleiro).\n");
+                        printf("NAO FOI POSSIVEL POSICIONAR O NAVIO NESSA POSICAO (sobreposicao ou fora do tabuleiro)\n");
                         continue;
                     }
                     colocado = 1;
@@ -96,19 +96,19 @@ int main() {
                     imprimirTabuleiro(tabuleiro2, 1);
                     printf("\nNavio: %s (Tamanho %d)\n", navio[i].nav, navio[i].tamanho);
                     printf("Digite Linha (1-10), Coluna (A-J) e Direcao (H/V): ");
-                    if (!fgets(buf, sizeof buf, stdin)) return 0;
+                    if (!fgets(ent, sizeof ent, stdin)) return 0;
                     if (sscanf(buf, "%d %c %c", &linha, &c, &d) != 3) {
-                        printf("Entrada invalida. Formato esperado: 5 B H\n");
+                        printf("ENTRADA INVALIDA!\n EXEMPLO DE ENTRADA: 5 B H\n");
                         continue;
                     }
                     c = toupper((unsigned char)c);
                     d = toupper((unsigned char)d);
                     if (linha < 1 || linha > 10 || c < 'A' || c > 'J' || (d != 'H' && d != 'V')) {
-                        printf("Valores fora do intervalo. Linha 1-10, Coluna A-J, Direcao H ou V.\n");
+                        printf("VALORES FORA DO INTERVALO PERMITIDO!\nLinha 1-10, Coluna A-J, Direcao H ou V.\n");
                         continue;
                     }
                     if (!posicionarNavio(tabuleiro2, navio[i].tamanho, navio[i].letra, d, linha - 1, c - 'A')) {
-                        printf("Nao foi possivel posicionar o navio nessa posicao (sobreposicao ou fora do tabuleiro).\n");
+                        printf("NAO FOI POSSIVEL POSICIONAR O NAVIO NESSA POSICAO (sobreposicao ou fora do tabuleiro).\n");
                         continue;
                     }
                     colocado = 1;
@@ -128,14 +128,14 @@ int main() {
                     imprimirTabuleiro(tabuleiro2, 0);
                     do {
                         printf("Alvo (Ex: 5 B): ");
-                        if (!fgets(buf, sizeof buf, stdin)) return 0;
-                        if (sscanf(buf, "%d %c", &l_ataque, &c_ataque) != 2) {
-                            printf("Entrada invalida. Formato: 5 B\n");
+                        if (!fgets(ent, sizeof ent, stdin)) return 0;
+                        if (sscanf(ent, "%d %c", &l_ataque, &c_ataque) != 2) {
+                            printf("ENTRADA INVALIDA!\nEXEMPLO: 5 B\n");
                             continue;
                         }
                         c_ataque = toupper((unsigned char)c_ataque);
                         if (l_ataque < 1 || l_ataque > 10 || c_ataque < 'A' || c_ataque > 'J') {
-                            printf("Coordenada fora do intervalo.\n");
+                            printf("COORDENADA FORA DO INTERVALO PERMITIDO!\n");
                             continue;
                         }
                        resp = atacar(tabuleiro2, l_ataque - 1, c_ataque - 'A');
@@ -151,14 +151,14 @@ int main() {
                     resp = -1;
                     do {
                         printf("Alvo (Ex: 5 B): ");
-                        if (!fgets(buf, sizeof buf, stdin)) return 0;
-                        if (sscanf(buf, "%d %c", &l_ataque, &c_ataque) != 2) {
-                            printf("Entrada invalida. Formato: 5 B\n");
+                        if (!fgets(ent, sizeof ent, stdin)) return 0;
+                        if (sscanf(ent, "%d %c", &l_ataque, &c_ataque) != 2) {
+                            printf("ENTRADA INVALIDA!\nEXEMPLO: 5 B\n");
                             continue;
                         }
                         c_ataque = toupper((unsigned char)c_ataque);
                         if (l_ataque < 1 || l_ataque > 10 || c_ataque < 'A' || c_ataque > 'J') {
-                            printf("Coordenada fora do intervalo.\n");
+                            printf("COORDENADA FORA DO INTERVALO PERMITIDO!\n");
                             continue;
                         }
                        resp = atacar(tabuleiro1, l_ataque - 1, c_ataque - 'A');
@@ -190,7 +190,7 @@ int main() {
             else printf("Empate!\n");
 
             salvarResultados(nome1, nome2, acertos1, acertos2, erros1, erros2, rodadas);
-            printf("\nPressione Enter para voltar ao menu...");
+            printf("\nPressione "ENTER" para voltar ao menu...");
             if (!fgets(buf, sizeof buf, stdin)) break;
 
         } else if (opt == 3) {
