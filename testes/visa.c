@@ -191,7 +191,7 @@ int main() {
 
             salvarResultados(nome1, nome2, acertos1, acertos2, erros1, erros2, rodadas);
             printf("\nPressione "ENTER" para voltar ao menu...");
-            if (!fgets(buf, sizeof buf, stdin)) break;
+            if (!fgets(ent, sizeof ent, stdin)) break;
 
         } else if (opt == 3) {
             system("clear");
@@ -212,7 +212,7 @@ int main() {
                    "2. Acertou\n");
             printf("o Quando um navio for afundado, aparecera 'Afundou' na tela\n\n\n");
             printf("Pressione Enter para voltar ao menu...");
-            if (!fgets(buf, sizeof buf, stdin)) break;
+            if (!fgets(ent, sizeof ent, stdin)) break;
         }
     }
     return 0;
