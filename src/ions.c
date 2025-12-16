@@ -128,7 +128,7 @@ int main() {
             }while(resultadoatk==0);
                     //jogador 2
                     jogadorAtual = 2;
-                    salvarJogo(nome_arq[], tabuleiro1[10][10], tabuleiro2[10][10], jogador1, jogador2, jogadorAtual, rodadas, acertos1, acertos2, erros1, erros2);
+                    salvarJogo(nome_arq, tabuleiro1, tabuleiro2, jogador1, jogador2, jogadorAtual, rodadas, acertos1, acertos2, erros1, erros2);
             }
             else {
                 printf("Vez de %s\n", jogador2);
@@ -146,7 +146,7 @@ int main() {
                  erros2++;
                 }while(resultadoatk==0);
                 jogadorAtual = 1;
-                salvarJogo(nome_arq[], tabuleiro1[10][10], tabuleiro2[10][10], jogador1, jogador2, jogadorAtual, rodadas, acertos1, acertos2, erros1, erros2);
+                salvarJogo(nome_arq, tabuleiro1, tabuleiro2, jogador1, jogador2, jogadorAtual, rodadas, acertos1, acertos2, erros1, erros2);
             }
 
                 rodadas++;
@@ -181,9 +181,8 @@ int main() {
             printf("\nPressione Enter para voltar ao menu...");
             getchar(); getchar();
                 }
-                if (opt == 2) {
-                   char 
-                   carregarJogo(nome_arq[] , tabuleiro1, tab2[10][10], jogador1[], jogador2, jogadorAtual, rodadas, acertos1, acertos2, erros1, erros2);
+                if (opt == 2) { 
+                   carregarJogo(nome_arq , tabuleiro1, tabuleiro2, jogador1, jogador2, jogadorAtual, rodadas, acertos1, acertos2, erros1, erros2);
                      int lin_ataque;
                 char cl_ataque;
                 int fim1 = 1;
