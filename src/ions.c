@@ -14,7 +14,8 @@ int atacar(char tabuleiro[N][N], int linha, int coluna);
 int main() {
     char tabuleiro1[N][N], tabuleiro2[N][N];
     char jogador1[50], jogador2[50];
-
+    char nome_arq;
+    strcpy(nome_arq,"data.txt");
     int opt = 0;
 
     while (opt !=4) {
@@ -125,6 +126,89 @@ int main() {
                 else if (resultadoatk == 2)
                  erros1++;
             }while(resultadoatk==0);
+                    //jogador 2
+                    jogadorAtual = 2;
+                    salvarJogo(nome_arq[], tabuleiro1[10][10], tabuleiro2[10][10], jogador1, jogador2, jogadorAtual, rodadas, acertos1, acertos2, erros1, erros2);
+            }
+            else {
+                printf("Vez de %s\n", jogador2);
+                printTabuleiro(tabuleiro1, 0);
+                resultadoatk=0;
+                do{
+                printf("Digite as coordenadas do alvo (Ex: 4 B): ");
+                scanf("%d %c", &lin_ataque, &cl_ataque);
+
+             resultadoatk = atacar(tabuleiro1, lin_ataque - 1, toupper(cl_ataque) - 'A');
+
+                if (resultadoatk == 1 || resultadoatk == 3)
+                 acertos2++;
+                else if (resultadoatk == 2)
+                 erros2++;
+                }while(resultadoatk==0);
+                jogadorAtual = 1;
+                salvarJogo(nome_arq[], tabuleiro1[10][10], tabuleiro2[10][10], jogador1, jogador2, jogadorAtual, rodadas, acertos1, acertos2, erros1, erros2);
+            }
+
+                rodadas++;
+
+                for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    if (tabuleiro1[i][j] == 'K' || tabuleiro1[i][j] == 'C' || tabuleiro1[i][j] == 'B')
+                        fim1 = 0;
+                    if (tabuleiro2[i][j] == 'K' || tabuleiro2[i][j] == 'C' || tabuleiro2[i][j] == 'B')
+                         fim2 = 0;
+             }
+                 }
+
+                if (fim1 || fim2)
+                     break;
+                    }
+
+
+
+
+
+            printf("Jogo encerrado!\n");
+            printf("O Jogador %s teve %d acertos e %d erros.\n", jogador1, acertos1, erros1);
+            printf("O Jogador %s teve %d acertos e %d erros.\n", jogador2, acertos2, erros2);
+            printf("O jogo acabou apos %d rodadas\n\n", rodadas);
+
+            if (fim2)
+            printf("VENCEDOR: %s\n", jogador1);
+            else if (fim1)
+            printf("VENCEDOR: %s\n", jogador2);
+
+            printf("\nPressione Enter para voltar ao menu...");
+            getchar(); getchar();
+                }
+                if (opt == 2) {
+                   char 
+                   carregarJogo(nome_arq[] , tabuleiro1, tab2[10][10], jogador1[], jogador2, jogadorAtual, rodadas, acertos1, acertos2, erros1, erros2);
+                     int lin_ataque;
+                char cl_ataque;
+                int fim1 = 1;
+                int fim2 = 1;
+
+                while (1) {
+                int resultadoatk=0;
+                fim1 = 1;
+                fim2 = 1;
+
+                //jogador 1
+                if (jogadorAtual == 1) {
+                printf("Vez de %s\n", jogador1);
+                printTabuleiro(tabuleiro2, 0);
+            do{
+                printf("Digite as coordenadas do alvo (Ex: 4 F): ");
+                scanf("%d %c", &lin_ataque, &cl_ataque);
+
+                resultadoatk = atacar(tabuleiro2, lin_ataque - 1, toupper(cl_ataque) - 'A');
+
+                if (resultadoatk == 1 || resultadoatk == 3)
+                acertos1++;
+                else if (resultadoatk == 2)
+                 erros1++;
+            }while(resultadoatk==0);
 
                     //jogador 2
                     jogadorAtual = 2;
@@ -179,8 +263,6 @@ int main() {
             printf("\nPressione Enter para voltar ao menu...");
             getchar(); getchar();
                 }
-                if (opt == 2) {
-                    printf("funcao ainda nao implementada\n");
                 }
              if (opt == 3) {
                 printf("As intrucoes do jogo sao as seguintes:\n\n");
@@ -355,9 +437,8 @@ int salvarJogo( char nome_arq[],
     return 1;
 }
 int carregarJogo(char nome_arq[] ,
-                 char tabuleiro1[10][10], char tabuleiro2[10][10],
-                 char nome1[], size_t nome1_size,
-                 char nome2[], size_t nome2_size,
+                 char tab1[10][10], char tab2[10][10],
+                 char nome1[], char nome2[],
                  int jogadorAtual, int rodadas,
                  int acertos1, int acertos2, int erros1, int erros2)
 {
