@@ -10,6 +10,7 @@ void innitTabuleiro(char tabuleiro[N][N]);
 void printTabuleiro(char tabuleiro[N][N], int spot);
 int posnav(char tabuleiro[N][N], int tamanho, char direcao, int linha, int coluna, char letra);
 int atacar(char tabuleiro[N][N], int linha, int coluna);
+int salvarJogo(
 void salvarResultados(char jogador1[], char jogador2[], int acertos1, int acertos2, int erros1, int erros2, int rodadas);
 
 int main() {
@@ -22,7 +23,10 @@ int main() {
 
         menu();
         printf("Escolha uma opcao:\n");
-        scanf("%d", &opt);
+        scanf("%d", &opt)
+        if (scanf("%d", &opt)!=1){
+        opt = 0;    
+        continue;}
 
 
         if (opt == 1) {
