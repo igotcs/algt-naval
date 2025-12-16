@@ -5,7 +5,7 @@ int salvarJogo( char nome_arq,
                int acertos1, int acertos2, int erros1, int erros2)
 {
     FILE *p;
-    p = fopen(filename, "w");
+    p = fopen(nome_arq, "w");
     if (!p) {
       printf("ERRO AO SALVAR O ARQUIVO");
       return 0;}
