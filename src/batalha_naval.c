@@ -306,5 +306,5 @@ void salvarResultados(char jogador1[], char jogador2[],
                       int erros1, int erros2, int rodadas) {
     // ainda não implementado
 }
-// NAO DA OUTRA CHANCE PRO ADVERSARIO, ERRO INPUT INCORRETO.
+// NAO DA OUTRA CHANCE PRO ADVERSARIO quando insere coordernada invalida, ERRO quando da input incorreto.
 
