@@ -4,7 +4,7 @@ int salvarJogo( char nome_arq,
                int jogadorAtual, int rodadas,
                int acertos1, int acertos2, int erros1, int erros2)
 {
-    FILE *p
+    FILE *p;
     p = fopen(filename, "w");
     if (!p) {
       printf("ERRO AO SALVAR O ARQUIVO");
@@ -15,8 +15,7 @@ int salvarJogo( char nome_arq,
     fprintf(p, "%s\n", nome2);
 
     /* estado geral */
-    fprintf(p, "%d %d %d %d %d %d\n",
-            jogadorAtual, rodadas, acertos1, acertos2, erros1, erros2);
+    fprintf(p, "%d %d %d %d %d %d\n", jogadorAtual, rodadas, acertos1, acertos2, erros1, erros2);
 
     /* tabuleiro1: 10 linhas de 10 chars (sem espaços) */
     for (int i = 0; i < 10; ++i) {
