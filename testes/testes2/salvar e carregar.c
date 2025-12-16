@@ -1,4 +1,4 @@
-int salvarJogo( char nome_arq,
+int salvarJogo( char nome_arq[],
                char tab1[10][10], char tab2[10][10],
                char nome1, char nome2,
                int jogadorAtual, int rodadas,
