@@ -111,10 +111,11 @@ int main() {
                 fim1 = 1;
                 fim2 = 1;
 
+                //jogador 1
                 if (jogadorAtual == 1) {
                 printf("Vez de %s\n", jogador1);
                 printTabuleiro(tabuleiro2, 0);
-            do{     
+            do{
                 printf("Digite as coordenadas do alvo (Ex: 4 F): ");
                 scanf("%d %c", &lin_ataque, &cl_ataque);
 
@@ -126,7 +127,8 @@ int main() {
                  erros1++;
             }while(resultadoatk==0);
 
-                jogadorAtual = 2;
+                    //jogador 2
+                    jogadorAtual = 2;
             }
             else {
                 printf("Vez de %s\n", jogador2);
@@ -166,10 +168,14 @@ int main() {
 
 
             printf("Jogo encerrado!\n");
+            printf("O Jogador %s teve %d acertos e %d erros.\n", jogador1, acertos1, erros1);
+            printf("O Jogador %s teve %d acertos e %d erros.\n", jogador2, acertos2, erros2);
+            printf("O jogo acabou apos %d rodadas\n\n", rodadas);
+
             if (fim2)
-            printf("O vencedor eh: %s\n", jogador1);
+            printf("VENCEDOR: %s\n", jogador1);
             else if (fim1)
-            printf("O vencedor eh: %s\n", jogador2);
+            printf("VENCEDOR: %s\n", jogador2);
 
             salvarResultados(jogador1, jogador2, acertos1, acertos2, erros1, erros2, rodadas);
             printf("\nPressione Enter para voltar ao menu...");
@@ -310,5 +316,4 @@ void salvarResultados(char jogador1[], char jogador2[],
                       int erros1, int erros2, int rodadas) {
     // ainda não implementado
 }
-// NAO DA OUTRA CHANCE PRO ADVERSARIO quando insere coordernada invalida, ERRO quando da input incorreto.
-
+//ERRO quando da input incorreto.
