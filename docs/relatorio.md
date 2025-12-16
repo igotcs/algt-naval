@@ -1,3 +1,5 @@
 Ante de começarmos o projeto, buscamos inspirações em projetos de outros estudantes no github e outras redes sociais, pra ter ao menos uma referencia pra onde ir e como começar. A priori, pensamos em usar header, pra puxar o código de outros arquivos locais e ficar mais organizado. Mas, devido a dificuldades técnicas optamos por fazer um código unificado, onde os unicos arquivos externos são results.txt (armazena os resultados da partida) e save.txt (arquvio de salvamento/carregamento da partida).
 
 A primeira parte do codigo foi fazer as funcoes que iriam ser usadas ao longo do jogo, como a de atacar, imprimir tabuleiro e posicionar os navios.
+
+Theo lindo e cheiroso <3.
