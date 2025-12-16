@@ -10,15 +10,21 @@ void innitTabuleiro(char tabuleiro[N][N]);
 void printTabuleiro(char tabuleiro[N][N], int spot);
 int posnav(char tabuleiro[N][N], int tamanho, char direcao, int linha, int coluna, char letra);
 int atacar(char tabuleiro[N][N], int linha, int coluna);
+int salvarJogo( char nome_arq[], char tab1[N][N], char tab2[N][N], char nome1[], char nome2[], int jogadorAtual, int rodadas, int acertos1, int acertos2, int erros1, int erros2);
+int carregarJogo(char nome_arq[], char tab1[N][N], char tab2[N][N],
+                 char nome1[], char nome2[],
+                 int *jogadorAtual, int *rodadas,
+                 int *acertos1, int *acertos2,
+                 int *erros1, int *erros2);
 
 int main() {
     char tabuleiro1[N][N], tabuleiro2[N][N];
     char jogador1[50], jogador2[50];
-
+    char nome_arq[50];
+    strcpy(nome_arq, "data.txt");
     int opt = 0;
 
     while (opt !=4) {
-
         menu();
         printf("Escolha uma opcao:\n\n");
         scanf("%d", &opt);
@@ -41,58 +47,58 @@ int main() {
 
 
             // navios do jogador 1
-        for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 3; i++) {
 
-            int cond = 0;
+                int cond = 0;
 
-            while (!cond) {
-                printf("%s, Digite as coordenadas do seu navio:\n", jogador1);
-                printTabuleiro(tabuleiro1, 1);
-                printf("\nNavio: %s (Tamanho %d)\n", Navios[i], tamanhoN[i]);
-                printf("Digite a linha (1-10), coluna (A-J) e direcao (H/V): ");
-                scanf("%d %c %c", &linha, &cl, &dir);
-
-
-            linha--;                    // 1–10 → 0–9
-            cl = toupper(cl) - 'A';     // A–J → 0–9
-            dir = toupper(dir);
-
-        char letraN[3] = {'K', 'C', 'B'};
-        cond = posnav(tabuleiro1, tamanhoN[i], dir, linha, cl, letraN[i]);
+                while (!cond) {
+                    printf("%s, Digite as coordenadas do seu navio:\n", jogador1);
+                    printTabuleiro(tabuleiro1, 1);
+                    printf("\nNavio: %s (Tamanho %d)\n", Navios[i], tamanhoN[i]);
+                    printf("Digite a linha (1-10), coluna (A-J) e direcao (H/V): ");
+                    scanf("%d %c %c", &linha, &cl, &dir);
 
 
-        if (!cond){
-             printf("\nNao foi possivel posicionar o navio. Tente novamente.\n\n");
-            }else printf("Navio posicionado com sucesso.\n");
+                    linha--;                    // 1–10 → 0–9
+                    cl = toupper(cl) - 'A';     // A–J → 0–9
+                    dir = toupper(dir);
+
+                    char letraN[3] = {'K', 'C', 'B'};
+                    cond = posnav(tabuleiro1, tamanhoN[i], dir, linha, cl, letraN[i]);
+
+
+                    if (!cond){
+                        printf("\nNao foi possivel posicionar o navio. Tente novamente.\n\n");
+                    }else printf("Navio posicionado com sucesso.\n");
+                }
             }
-        }
 
             // navios dos jogador 2
             for (int i = 0; i < 3; i++) {
 
-            int cond = 0;
+                int cond = 0;
 
-            while (!cond) {
-                printf("%s, Digite as coordenadas do seu navio:\n", jogador2);
-                printTabuleiro(tabuleiro2, 1);
-                printf("\nNavio: %s (Tamanho %d)\n", Navios[i], tamanhoN[i]);
-                printf("Digite a linha (1-10), coluna (A-J) e direcao (H/V): ");
-                scanf("%d %c %c", &linha, &cl, &dir);
-
-
-            linha--;                    // 1–10 → 0–9
-            cl = toupper(cl) - 'A';     // A–J → 0–9
-            dir = toupper(dir);
-
-        char letraN[3] = {'K', 'C', 'B'};
-        cond = posnav(tabuleiro2, tamanhoN[i], dir, linha, cl, letraN[i]);
+                while (!cond) {
+                    printf("%s, Digite as coordenadas do seu navio:\n", jogador2);
+                    printTabuleiro(tabuleiro2, 1);
+                    printf("\nNavio: %s (Tamanho %d)\n", Navios[i], tamanhoN[i]);
+                    printf("Digite a linha (1-10), coluna (A-J) e direcao (H/V): ");
+                    scanf("%d %c %c", &linha, &cl, &dir);
 
 
-        if (!cond){
-             printf("\nNao foi possivel posicionar o navio. Tente novamente.\n\n");
-            }else printf("Navio posicionado com sucesso.\n");
+                    linha--;                    // 1–10 → 0–9
+                    cl = toupper(cl) - 'A';     // A–J → 0–9
+                    dir = toupper(dir);
+
+                    char letraN[3] = {'K', 'C', 'B'};
+                    cond = posnav(tabuleiro2, tamanhoN[i], dir, linha, cl, letraN[i]);
+
+
+                    if (!cond){
+                        printf("\nNao foi possivel posicionar o navio. Tente novamente.\n\n");
+                    }else printf("Navio posicionado com sucesso.\n");
+                }
             }
-        }
 
             // game engine
             int jogadorAtual = 1;
@@ -100,67 +106,68 @@ int main() {
 
 
 
-                int lin_ataque;
-                char cl_ataque;
-                int fim1 = 1;
-                int fim2 = 1;
+            int lin_ataque;
+            char cl_ataque;
+            int fim1 = 1;
+            int fim2 = 1;
 
-                while (1) {
+            while (1) {
                 int resultadoatk=0;
                 fim1 = 1;
                 fim2 = 1;
 
                 //jogador 1
                 if (jogadorAtual == 1) {
-                printf("Vez de %s\n", jogador1);
-                printTabuleiro(tabuleiro2, 0);
-            do{
-                printf("Digite as coordenadas do alvo (Ex: 4 F): ");
-                scanf("%d %c", &lin_ataque, &cl_ataque);
+                    printf("Vez de %s\n", jogador1);
+                    printTabuleiro(tabuleiro2, 0);
+                    do{
+                        printf("Digite as coordenadas do alvo (Ex: 4 F): ");
+                        scanf("%d %c", &lin_ataque, &cl_ataque);
 
-                resultadoatk = atacar(tabuleiro2, lin_ataque - 1, toupper(cl_ataque) - 'A');
+                        resultadoatk = atacar(tabuleiro2, lin_ataque - 1, toupper(cl_ataque) - 'A');
 
-                if (resultadoatk == 1 || resultadoatk == 3)
-                acertos1++;
-                else if (resultadoatk == 2)
-                 erros1++;
-            }while(resultadoatk==0);
-
+                        if (resultadoatk == 1 || resultadoatk == 3)
+                            acertos1++;
+                        else if (resultadoatk == 2)
+                            erros1++;
+                    }while(resultadoatk==0);
                     //jogador 2
                     jogadorAtual = 2;
-            }
-            else {
-                printf("Vez de %s\n", jogador2);
-                printTabuleiro(tabuleiro1, 0);
-                resultadoatk=0;
-                do{
-                printf("Digite as coordenadas do alvo (Ex: 4 B): ");
-                scanf("%d %c", &lin_ataque, &cl_ataque);
+                    salvarJogo(nome_arq, tabuleiro1, tabuleiro2, jogador1, jogador2, jogadorAtual, rodadas, acertos1, acertos2, erros1, erros2);
+                }
+                else {
+                    printf("Vez de %s\n", jogador2);
+                    printTabuleiro(tabuleiro1, 0);
+                    resultadoatk=0;
+                    do{
+                        printf("Digite as coordenadas do alvo (Ex: 4 B): ");
+                        scanf("%d %c", &lin_ataque, &cl_ataque);
 
-             resultadoatk = atacar(tabuleiro1, lin_ataque - 1, toupper(cl_ataque) - 'A');
+                        resultadoatk = atacar(tabuleiro1, lin_ataque - 1, toupper(cl_ataque) - 'A');
 
-                if (resultadoatk == 1 || resultadoatk == 3)
-                 acertos2++;
-                else if (resultadoatk == 2)
-                 erros2++;
-                }while(resultadoatk==0);
-                jogadorAtual = 1;
-            }
+                        if (resultadoatk == 1 || resultadoatk == 3)
+                            acertos2++;
+                        else if (resultadoatk == 2)
+                            erros2++;
+                    }while(resultadoatk==0);
+                    jogadorAtual = 1;
+                    salvarJogo(nome_arq, tabuleiro1, tabuleiro2, jogador1, jogador2, jogadorAtual, rodadas, acertos1, acertos2, erros1, erros2);
+                }
 
                 rodadas++;
 
                 for (int i = 0; i < N; i++) {
-                for (int j = 0; j < N; j++) {
-                    if (tabuleiro1[i][j] == 'K' || tabuleiro1[i][j] == 'C' || tabuleiro1[i][j] == 'B')
-                        fim1 = 0;
-                    if (tabuleiro2[i][j] == 'K' || tabuleiro2[i][j] == 'C' || tabuleiro2[i][j] == 'B')
-                         fim2 = 0;
-             }
-                 }
+                    for (int j = 0; j < N; j++) {
+                        if (tabuleiro1[i][j] == 'K' || tabuleiro1[i][j] == 'C' || tabuleiro1[i][j] == 'B')
+                            fim1 = 0;
+                        if (tabuleiro2[i][j] == 'K' || tabuleiro2[i][j] == 'C' || tabuleiro2[i][j] == 'B')
+                            fim2 = 0;
+                    }
+                }
 
                 if (fim1 || fim2)
-                     break;
-                    }
+                    break;
+            }
 
 
 
@@ -172,41 +179,130 @@ int main() {
             printf("O jogo acabou apos %d rodadas\n\n", rodadas);
 
             if (fim2)
-            printf("VENCEDOR: %s\n", jogador1);
+                printf("VENCEDOR: %s\n", jogador1);
             else if (fim1)
-            printf("VENCEDOR: %s\n", jogador2);
+                printf("VENCEDOR: %s\n", jogador2);
 
             printf("\nPressione Enter para voltar ao menu...");
             getchar(); getchar();
-                }
-                if (opt == 2) {
-                    printf("funcao ainda nao implementada\n");
-                }
-             if (opt == 3) {
-                printf("As intrucoes do jogo sao as seguintes:\n\n");
+        }
+        if (opt == 2) {
 
-                 printf("No inicio do jogo, cada jogador deve posicionar seus navios manualmente em um tabuleiro 10x10\n"
-                "no qual as linhas sao letras de 1 a 10 e as colunas sao letras de A a J.");
-                 printf("Os tipos de embarcacao sao os seguintes:\n"
-                 "1. Cruzeiro do Kaka: 4 celulas\n"
-                 "2. Charles: 3 celulas\n"
-                 "3. Bote: 2 celulas\n");
-                 printf("Duas embarcacoes nao podem ocupar uma mesma celula\n");
-                 printf("Uma embarcacao nao pode ser posicionada fora do tabuleiro\n");
-                 printf("Apos o inicio do jogo, os jogadores se alternam em turnos de ataque. Cada jogada insiste em\n"
-                 "informar coordenadas (linha e coluna) para atacar o tabuleiro do adversario.\n");
-                 printf("Apos cada tiro a tela mostrara uma resposta:\n"
-                 "1. Errou!\n"
-                 "2. Acertou!\n"
-                 "3. Afundou, quando uma embarcacao adversario for totalmente destruida.\n");
-                 printf("O jogo termina quando todos os navios de um dos dois jogadores forem destruidos.\n\n");
-             }
+            int jogadorAtual, rodadas, acertos1, acertos2, erros1, erros2;
+            carregarJogo(nome_arq,
+             tabuleiro1, tabuleiro2,
+             jogador1, jogador2,
+             &jogadorAtual, &rodadas,
+             &acertos1, &acertos2,
+             &erros1, &erros2);
 
-            if (opt == 4) {
-                printf("Saindo do jogo...\n");
+            int lin_ataque;
+            char cl_ataque;
+            int fim1 = 1;
+            int fim2 = 1;
+
+            while (1) {
+                int resultadoatk=0;
+                fim1 = 1;
+                fim2 = 1;
+
+                //jogador 1
+                if (jogadorAtual == 1) {
+                    printf("Vez de %s\n", jogador1);
+                    printTabuleiro(tabuleiro2, 0);
+                    do{
+                        printf("Digite as coordenadas do alvo (Ex: 4 F): ");
+                        scanf("%d %c", &lin_ataque, &cl_ataque);
+
+                        resultadoatk = atacar(tabuleiro2, lin_ataque - 1, toupper(cl_ataque) - 'A');
+
+                        if (resultadoatk == 1 || resultadoatk == 3)
+                            acertos1++;
+                        else if (resultadoatk == 2)
+                            erros1++;
+                    }while(resultadoatk==0);
+
+                    //jogador 2
+                    jogadorAtual = 2;
+                    salvarJogo(nome_arq, tabuleiro1, tabuleiro2, jogador1, jogador2, jogadorAtual, rodadas, acertos1, acertos2, erros1, erros2);
+                }
+                else {
+                    printf("Vez de %s\n", jogador2);
+                    printTabuleiro(tabuleiro1, 0);
+                    resultadoatk=0;
+                    do{
+                        printf("Digite as coordenadas do alvo (Ex: 4 B): ");
+                        scanf("%d %c", &lin_ataque, &cl_ataque);
+
+                        resultadoatk = atacar(tabuleiro1, lin_ataque - 1, toupper(cl_ataque) - 'A');
+
+                        if (resultadoatk == 1 || resultadoatk == 3)
+                            acertos2++;
+                        else if (resultadoatk == 2)
+                            erros2++;
+                    }while(resultadoatk==0);
+                    jogadorAtual = 1;
+                    salvarJogo(nome_arq, tabuleiro1, tabuleiro2, jogador1, jogador2, jogadorAtual, rodadas, acertos1, acertos2, erros1, erros2);
+                }
+
+                rodadas++;
+
+                for (int i = 0; i < N; i++) {
+                    for (int j = 0; j < N; j++) {
+                        if (tabuleiro1[i][j] == 'K' || tabuleiro1[i][j] == 'C' || tabuleiro1[i][j] == 'B')
+                            fim1 = 0;
+                        if (tabuleiro2[i][j] == 'K' || tabuleiro2[i][j] == 'C' || tabuleiro2[i][j] == 'B')
+                            fim2 = 0;
+                    }
+                }
+
+                if (fim1 || fim2)
+                    break;
             }
+
+            printf("Jogo encerrado!\n");
+            printf("O Jogador %s teve %d acertos e %d erros.\n", jogador1, acertos1, erros1);
+            printf("O Jogador %s teve %d acertos e %d erros.\n", jogador2, acertos2, erros2);
+            printf("O jogo acabou apos %d rodadas\n\n", rodadas);
+
+            if (fim2)
+                printf("VENCEDOR: %s\n", jogador1);
+            else if (fim1)
+                printf("VENCEDOR: %s\n", jogador2);
+
+            printf("\nPressione Enter para voltar ao menu...");
+            getchar(); getchar();
+        }
+
+        if (opt == 3) {
+            printf("As intrucoes do jogo sao as seguintes:\n\n");
+
+            printf("No inicio do jogo, cada jogador deve posicionar seus navios manualmente em um tabuleiro 10x10\n"
+           "no qual as linhas sao letras de 1 a 10 e as colunas sao letras de A a J.");
+            printf("Os tipos de embarcacao sao os seguintes:\n"
+            "1. Cruzeiro do Kaka: 4 celulas\n"
+            "2. Charles: 3 celulas\n"
+            "3. Bote: 2 celulas\n");
+            printf("Duas embarcacoes nao podem ocupar uma mesma celula\n");
+            printf("Uma embarcacao nao pode ser posicionada fora do tabuleiro\n");
+            printf("Apos o inicio do jogo, os jogadores se alternam em turnos de ataque. Cada jogada insiste em\n"
+            "informar coordenadas (linha e coluna) para atacar o tabuleiro do adversario.\n");
+            printf("Apos cada tiro a tela mostrara uma resposta:\n"
+            "1. Errou!\n"
+            "2. Acertou!\n"
+            "3. Afundou, quando uma embarcacao adversario for totalmente destruida.\n");
+            printf("O jogo termina quando todos os navios de um dos dois jogadores forem destruidos.\n\n");
+        }
+
+        if (opt == 4) {
+            printf("Saindo do jogo...\n");
         }
     }
+    return 0;
+}
+
+
+
 
 
 int posnav(char tabuleiro[N][N], int tamanho, char direcao, int linha, int coluna, char letra) {
@@ -245,6 +341,28 @@ int posnav(char tabuleiro[N][N], int tamanho, char direcao, int linha, int colun
 
 void menu() {
 
+
+        printf("0 0 0   0 0 0 0  0 0 0 0  0 0 0 0  0        0     0  0 0 0 0\n"
+              "0    0  0     0     0     0     0  0        0     0  0     0\n"
+              "0 0 0   0 0 0 0     0     0 0 0 0  0        0 0 0 0  0 0 0 0\n"
+              "0    0  0     0     0     0     0  0        0     0  0     0\n"
+              "0 0 0   0     0     0     0     0  0 0 0 0  0     0  0     0\n");
+        printf("         0     0  0 0 0 0  0       0  0 0 0 0  0\n"
+               "         0 0   0  0     0   0     0   0     0  0\n"
+               "         0  0  0  0 0 0 0    0   0    0 0 0 0  0\n"
+               "         0   0 0  0     0     0 0     0     0  0\n"
+               "         0     0  0     0      0      0     0  0 0 0 0\n");
+        printf(" \n");
+        printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 0 00 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+               "~~~~~~~~~~~~~~~~~~~~~~~~~~~ 00 00 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+               "~~~~~~~~~~~~~~~~~~~~~~~~~~ 000 00 0 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+               "~~~~~~~~~~~~~~~~~~~~~~~~~ 0000 00 00 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+               "~~~~~~~~~~~~~~~~~~~~~~~ 000000 00 000 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+               "~~~~~~~~~~~~~~~~~~~~~~ 0000000 00 0000 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n"
+               "~~~~~~~~~~~~~~ 0000000000000000000000000000 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+               "~~~~~~~~~~~~~~~~ 000000000000000000000000 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+               "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    printf(" \n");
     printf("Bem vindo a Batalha Naval!\n\n");
     printf("Escolha uma opcao abaixo:\n");
     printf("1. Novo Jogo.\n");
@@ -315,4 +433,81 @@ int atacar(char tabuleiro[N][N], int linha, int coluna){
         return 0;
     }
 }
+int salvarJogo(char nome_arq[], char tab1[10][10], char tab2[10][10],
+               char nome1[], char nome2[],
+               int jogadorAtual, int rodadas,
+               int acertos1, int acertos2,
+               int erros1, int erros2){
 
+    FILE *p = fopen(nome_arq, "w");
+    if (!p) {
+        printf("ERRO AO SALVAR O ARQUIVO\n");
+        return 0;
+    }
+
+    fprintf(p, "%s\n", nome1);
+    fprintf(p, "%s\n", nome2);
+
+    fprintf(p, "%d %d %d %d %d %d\n",
+            jogadorAtual, rodadas,
+            acertos1, acertos2,
+            erros1, erros2);
+
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++)
+            fputc(tab1[i][j], p);
+        fputc('\n', p);
+    }
+
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++)
+            fputc(tab2[i][j], p);
+        fputc('\n', p);
+    }
+
+    fclose(p);
+    return 1;
+}
+
+
+int carregarJogo(char nome_arq[], char tab1[10][10], char tab2[10][10],
+                 char nome1[], char nome2[],
+                 int *jogadorAtual, int *rodadas,
+                 int *acertos1, int *acertos2,
+                 int *erros1, int *erros2) {
+    // Aqui vai o corpo da função
+
+
+
+    FILE *p = fopen(nome_arq, "r");
+    if (!p) {
+        printf("ERRO AO CARREGAR OU NAO EXISTE JOGO SALVO\n");
+        return 0;
+    }
+
+    fscanf(p, "%s", nome1);
+    fscanf(p, "%s", nome2);
+
+    fscanf(p, "%d %d %d %d %d %d",
+       jogadorAtual, rodadas,
+       acertos1, acertos2,
+       erros1, erros2);
+
+
+    char linha[20];
+
+    for (int i = 0; i < 10; i++) {
+        fscanf(p, "%s", linha);
+        for (int j = 0; j < 10; j++)
+            tab1[i][j] = linha[j];
+    }
+
+    for (int i = 0; i < 10; i++) {
+        fscanf(p, "%s", linha);
+        for (int j = 0; j < 10; j++)
+            tab2[i][j] = linha[j];
+    }
+
+    fclose(p);
+    return 1;
+}
