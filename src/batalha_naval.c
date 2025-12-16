@@ -75,7 +75,7 @@ int main() {
 
             while (!cond) {
                 printf("%s, Digite as coordenadas do seu navio:\n", jogador2);
-                printTabuleiro(tabuleiro2, 2);
+                printTabuleiro(tabuleiro2, 1);
                 printf("\nNavio: %s (Tamanho %d)\n", Navios[i], tamanhoN[i]);
                 printf("Digite a linha (1-10), coluna (A-J) e direcao (H/V): ");
                 scanf("%d %c %c", &linha, &cl, &dir);
@@ -103,79 +103,75 @@ int main() {
 
                 int lin_ataque;
                 char cl_ataque;
+                int fim1 = 1;
+                int fim2 = 1;
 
-                while(1) {
-                    if (jogadorAtual == 1) {
-                        int resultadoatk;
+                while (1) {
+                int resultadoatk;
+                fim1 = 1;
+                fim2 = 1;
 
-                        printf("Vez de %s ", jogador1);
-                        printTabuleiro(tabuleiro2, 0);
-                        printf("Digite as coordenadas do alvo (Ex: 4 F): "); //quando acertar, retorna 1. quando errar, retorna 2.
-                        scanf("%d %c", &lin_ataque, &cl_ataque);              // uando afundar, retorna 3. quando for repetido ou fora do tabuleiro, retorna 0.
-                        cl_ataque = toupper(cl_ataque);
+                if (jogadorAtual == 1) {
+                printf("Vez de %s\n", jogador1);
+                printTabuleiro(tabuleiro2, 0);
+                printf("Digite as coordenadas do alvo (Ex: 4 F): ");
+                scanf("%d %c", &lin_ataque, &cl_ataque);
 
-                        resultadoatk = atacar(tabuleiro2, lin_ataque - 1, cl_ataque - 'A');
+                resultadoatk = atacar(tabuleiro2, lin_ataque - 1, toupper(cl_ataque) - 'A');
 
-                        if (resultadoatk == 1 || resultadoatk == 3)
-                            acertos1++;
-                        if (resultadoatk == 2)
-                            erros1++;
+                if (resultadoatk == 1 || resultadoatk == 3)
+                acertos1++;
+                else if (resultadoatk == 2)
+                 erros1++;
 
+                jogadorAtual = 2;
+            }
+            else {
+                printf("Vez de %s\n", jogador2);
+                printTabuleiro(tabuleiro1, 0);
+                printf("Digite as coordenadas do alvo (Ex: 4 B): ");
+                scanf("%d %c", &lin_ataque, &cl_ataque);
 
-                        jogadorAtual = 2;
+             resultadoatk = atacar(tabuleiro1, lin_ataque - 1, toupper(cl_ataque) - 'A');
 
-                        if (jogadorAtual == 2) {
-                            int resultadoatk;
+                if (resultadoatk == 1 || resultadoatk == 3)
+                 acertos2++;
+                else if (resultadoatk == 2)
+                 erros2++;
 
-                            do {
-                                printf("Vez de %s ", jogador2);
-                                printTabuleiro(tabuleiro1, 0); // 0 esconde os navios do oponente
+                jogadorAtual = 1;
+            }
 
-                                printf("Digite as coordenadas do alvo (Ex: 4 B): ");
-                                if (scanf("%d %c", &lin_ataque, &cl_ataque) != 2) {
-                                }
+                rodadas++;
 
-                                cl_ataque = toupper(cl_ataque);
+                for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    if (tabuleiro1[i][j] == 'K' || tabuleiro1[i][j] == 'C' || tabuleiro1[i][j] == 'B')
+                        fim1 = 0;
+                    if (tabuleiro2[i][j] == 'K' || tabuleiro2[i][j] == 'C' || tabuleiro2[i][j] == 'B')
+                         fim2 = 0;
+             }
+                 }
 
-                                resultadoatk = atacar(tabuleiro1, lin_ataque - 1, cl_ataque - 'A');
-
-                                if (atacar(tabuleiro1, lin_ataque-1, cl_ataque - 'A'))
-                                    acertos2++;
-                                else erros2++;
-
-
-                            } while (resultadoatk == 0); // Repete enquanto o tiro for inválido
-
-                            jogadorAtual = 2; // Só passa o turno quando o tiro for válido
-                        }
-                        jogadorAtual = 1;
+                if (fim1 || fim2)
+                     break;
                     }
 
-                    rodadas++;
-                    int fim1 = 1, fim2 = 1;
-                    for(int i=0;i<N;i++) for(int j=0;j<N;j++) {
-                        if(tabuleiro1[i][j] == 'K' || tabuleiro1[i][j] == 'C' || tabuleiro1[i][j] == 'B') fim1 = 0;
-                        if(tabuleiro2[i][j] == 'K' || tabuleiro2[i][j] == 'C' || tabuleiro2[i][j] == 'B') fim2 = 0;
-                    }
-                    if (fim1 || fim2)
-                        break;
-                }
 
 
 
 
             printf("Jogo encerrado!\n");
-            if (acertos1 > acertos2)
+            if (fim2)
             printf("O vencedor eh: %s\n", jogador1);
-            else if (acertos2 > acertos1)
+            else if (fim1)
             printf("O vencedor eh: %s\n", jogador2);
-            else printf("Empate!\n");
 
             salvarResultados(jogador1, jogador2, acertos1, acertos2, erros1, erros2, rodadas);
             printf("\nPressione Enter para voltar ao menu...");
             getchar(); getchar();
                 }
-        }
+             }
              if (opt == 3) {
             printf("As intrucoes do jogo sao as seguintes:\n\n");
 
@@ -221,7 +217,7 @@ int posnav(char tabuleiro[N][N], int tamanho, char direcao, int linha, int colun
             return 0;
 
         for (int i = 0; i < tamanho; i++) {
-            if (tabuleiro[linha + i][coluna] == 'K' || tabuleiro[linha + i][coluna + i] == 'C' || tabuleiro[linha + i][coluna + i] == 'B')
+            if (tabuleiro[linha + i][coluna] == 'K' || tabuleiro[linha + i][coluna] == 'C' || tabuleiro[linha + i][coluna] == 'B')
                 return 0;
         }
         for (int i = 0; i < tamanho; i++) {
@@ -310,5 +306,5 @@ void salvarResultados(char jogador1[], char jogador2[],
                       int erros1, int erros2, int rodadas) {
     // ainda não implementado
 }
-
+// NAO DA OUTRA CHANCE PRO ADVERSARIO, ERRO INPUT INCORRETO.
 
