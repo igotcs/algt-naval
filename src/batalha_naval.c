@@ -10,7 +10,6 @@ void innitTabuleiro(char tabuleiro[N][N]);
 void printTabuleiro(char tabuleiro[N][N], int spot);
 int posnav(char tabuleiro[N][N], int tamanho, char direcao, int linha, int coluna, char letra);
 int atacar(char tabuleiro[N][N], int linha, int coluna);
-void salvarResultados(char jogador1[], char jogador2[], int acertos1, int acertos2, int erros1, int erros2, int rodadas);
 
 int main() {
     char tabuleiro1[N][N], tabuleiro2[N][N];
@@ -21,7 +20,7 @@ int main() {
     while (opt !=4) {
 
         menu();
-        printf("Escolha uma opcao:\n");
+        printf("Escolha uma opcao:\n\n");
         scanf("%d", &opt);
 
         if (opt == 1) {
@@ -177,31 +176,37 @@ int main() {
             else if (fim1)
             printf("VENCEDOR: %s\n", jogador2);
 
-            salvarResultados(jogador1, jogador2, acertos1, acertos2, erros1, erros2, rodadas);
             printf("\nPressione Enter para voltar ao menu...");
             getchar(); getchar();
                 }
-             }
+                if (opt == 2) {
+                    printf("funcao ainda nao implementada\n");
+                }
              if (opt == 3) {
-            printf("As intrucoes do jogo sao as seguintes:\n\n");
+                printf("As intrucoes do jogo sao as seguintes:\n\n");
 
                  printf("No inicio do jogo, cada jogador deve posicionar seus navios manualmente em um tabuleiro 10x10\n"
-                "no qual as linhas sao letras de 1 a 10 e as colunas são letras de A a J.");
+                "no qual as linhas sao letras de 1 a 10 e as colunas sao letras de A a J.");
                  printf("Os tipos de embarcacao sao os seguintes:\n"
-                 "1. Cruzeiro do Kaka – 4 celulas\n"
-                 "2. Charles – 3 celulas\n"
-                 "3. Bote – 2 celulas\n");
+                 "1. Cruzeiro do Kaka: 4 celulas\n"
+                 "2. Charles: 3 celulas\n"
+                 "3. Bote: 2 celulas\n");
                  printf("Duas embarcacoes nao podem ocupar uma mesma celula\n");
                  printf("Uma embarcacao nao pode ser posicionada fora do tabuleiro\n");
                  printf("Apos o inicio do jogo, os jogadores se alternam em turnos de ataque. Cada jogada insiste em\n"
-                 "informar coordenadas (linha e coluna) para atacar o tabuleiro do adversario.");
-                 printf("o Após cada tiro a tela mostrará uma resposta:\n"
+                 "informar coordenadas (linha e coluna) para atacar o tabuleiro do adversario.\n");
+                 printf("Apos cada tiro a tela mostrara uma resposta:\n"
                  "1. Errou!\n"
                  "2. Acertou!\n"
                  "3. Afundou, quando uma embarcacao adversario for totalmente destruida.\n");
-                 printf("O jogo termina quando todos os navios de um dos dois jogadores forem destruidos.\n\n'");
+                 printf("O jogo termina quando todos os navios de um dos dois jogadores forem destruidos.\n\n");
              }
+
+            if (opt == 4) {
+                printf("Saindo do jogo...\n");
+            }
         }
+    }
 
 
 int posnav(char tabuleiro[N][N], int tamanho, char direcao, int linha, int coluna, char letra) {
@@ -311,9 +316,3 @@ int atacar(char tabuleiro[N][N], int linha, int coluna){
     }
 }
 
-void salvarResultados(char jogador1[], char jogador2[],
-                      int acertos1, int acertos2,
-                      int erros1, int erros2, int rodadas) {
-    // ainda não implementado
-}
-//ERRO quando da input incorreto.
