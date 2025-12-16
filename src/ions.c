@@ -441,7 +441,7 @@ int carregarJogo(char nome_arq[] ,
                  int jogadorAtual, int rodadas,
                  int acertos1, int acertos2, int erros1, int erros2)
 {
-    FILE *p 
+    FILE *p; 
     p = fopen(nome_arq, "r");
     if (!p) {
       printf("ERRO AO CARREGAR O JOGO OU NAO EXISTE JOGO SALVO");
