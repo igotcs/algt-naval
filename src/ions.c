@@ -11,7 +11,11 @@ void printTabuleiro(char tabuleiro[N][N], int spot);
 int posnav(char tabuleiro[N][N], int tamanho, char direcao, int linha, int coluna, char letra);
 int atacar(char tabuleiro[N][N], int linha, int coluna);
 int salvarJogo( char nome_arq[], char tab1[N][N], char tab2[N][N], char nome1[], char nome2[], int jogadorAtual, int rodadas, int acertos1, int acertos2, int erros1, int erros2);
-int carregarJogo(char nome_arq[], char tab1[N][N], char tab2[N][N], char nome1[], char nome2[], int jogadorAtual, int rodadas, int acertos1, int acertos2, int erros1, int erros2);
+int carregarJogo(char nome_arq[], char tab1[N][N], char tab2[N][N],
+                 char nome1[], char nome2[],
+                 int *jogadorAtual, int *rodadas,
+                 int *acertos1, int *acertos2,
+                 int *erros1, int *erros2);
 
 int main() {
     char tabuleiro1[N][N], tabuleiro2[N][N];
@@ -185,7 +189,13 @@ int main() {
         if (opt == 2) {
 
             int jogadorAtual, rodadas, acertos1, acertos2, erros1, erros2;
-            carregarJogo(nome_arq , tabuleiro1, tabuleiro2, jogador1, jogador2, jogadorAtual, rodadas, acertos1, acertos2, erros1, erros2);
+            carregarJogo(nome_arq,
+             tabuleiro1, tabuleiro2,
+             jogador1, jogador2,
+             &jogadorAtual, &rodadas,
+             &acertos1, &acertos2,
+             &erros1, &erros2);
+
             int lin_ataque;
             char cl_ataque;
             int fim1 = 1;
@@ -399,34 +409,35 @@ int atacar(char tabuleiro[N][N], int linha, int coluna){
         return 0;
     }
 }
-int salvarJogo( char nome_arq[], char tab1[10][10], char tab2[10][10], char nome1[], char nome2[], int jogadorAtual, int rodadas, int acertos1, int acertos2, int erros1, int erros2){
+int salvarJogo(char nome_arq[], char tab1[10][10], char tab2[10][10],
+               char nome1[], char nome2[],
+               int jogadorAtual, int rodadas,
+               int acertos1, int acertos2,
+               int erros1, int erros2){
 
-    FILE *p;
-    p = fopen(nome_arq, "w");
+    FILE *p = fopen(nome_arq, "w");
     if (!p) {
-      printf("ERRO AO SALVAR O ARQUIVO");
-      return 0;}
+        printf("ERRO AO SALVAR O ARQUIVO\n");
+        return 0;
+    }
 
-    /* nomes */
     fprintf(p, "%s\n", nome1);
     fprintf(p, "%s\n", nome2);
 
-    /* estado geral */
-    fprintf(p, "%d %d %d %d %d %d\n", jogadorAtual, rodadas, acertos1, acertos2, erros1, erros2);
+    fprintf(p, "%d %d %d %d %d %d\n",
+            jogadorAtual, rodadas,
+            acertos1, acertos2,
+            erros1, erros2);
 
-    /* tabuleiro1: 10 linhas de 10 chars (sem espaços) */
-    for (int i = 0; i < 10; ++i) {
-        for (int j = 0; j < 10; ++j) {
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++)
             fputc(tab1[i][j], p);
-        }
         fputc('\n', p);
     }
 
-    /* tabuleiro2 */
-    for (int i = 0; i < 10; ++i) {
-        for (int j = 0; j < 10; ++j) {
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++)
             fputc(tab2[i][j], p);
-        }
         fputc('\n', p);
     }
 
@@ -434,41 +445,43 @@ int salvarJogo( char nome_arq[], char tab1[10][10], char tab2[10][10], char nome
     return 1;
 }
 
-int carregarJogo(char nome_arq[], char tab1[10][10], char tab2[10][10], char nome1[], char nome2[], int jogadorAtual, int rodadas, int acertos1, int acertos2, int erros1, int erros2){
 
-    FILE *p;
-    p = fopen(nome_arq, "r");
+int carregarJogo(char nome_arq[], char tab1[10][10], char tab2[10][10],
+                 char nome1[], char nome2[],
+                 int *jogadorAtual, int *rodadas,
+                 int *acertos1, int *acertos2,
+                 int *erros1, int *erros2) {
+    // Aqui vai o corpo da função
+
+
+
+    FILE *p = fopen(nome_arq, "r");
     if (!p) {
-        printf("ERRO AO CARREGAR O JOGO OU NAO EXISTE JOGO SALVO");
+        printf("ERRO AO CARREGAR OU NAO EXISTE JOGO SALVO\n");
         return 0;
     }
 
-    fscanf(p,"%s", nome1);
-    fscanf(p,"%s", nome2);
-    fscanf(p,"%d %d %d %d %d %d", jogadorAtual, rodadas, acertos1, acertos2, erros1, erros2);
+    fscanf(p, "%s", nome1);
+    fscanf(p, "%s", nome2);
 
-    /* lê tabuleiro1 */
-    for (int i = 0; i < 10; ++i) {
-        char line[10];
-        if ((int)strlen(line) < 10) {
-            fclose(p);
-            return 0;
-        }
-        for (int j = 0; j < 10; ++j) {
-            tab1[i][j] = line[j];
-        }
+    fscanf(p, "%d %d %d %d %d %d",
+       jogadorAtual, rodadas,
+       acertos1, acertos2,
+       erros1, erros2);
+
+
+    char linha[20];
+
+    for (int i = 0; i < 10; i++) {
+        fscanf(p, "%s", linha);
+        for (int j = 0; j < 10; j++)
+            tab1[i][j] = linha[j];
     }
 
-    /* lê tabuleiro2 */
-    for (int i = 0; i < 10; ++i) {
-        char line[10];
-        if ((int)strlen(line) < 10) {
-            fclose(p);
-            return 0;
-        }
-        for (int j = 0; j < 10; ++j) {
-            tab2[i][j] = line[j];
-        }
+    for (int i = 0; i < 10; i++) {
+        fscanf(p, "%s", linha);
+        for (int j = 0; j < 10; j++)
+            tab2[i][j] = linha[j];
     }
 
     fclose(p);
