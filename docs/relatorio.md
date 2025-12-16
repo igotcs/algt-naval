@@ -3,4 +3,4 @@ Antes de começarmos o projeto, buscamos inspirações em projetos de outros est
 A primeira parte do codigo foi fazer as funcoes que iriam ser usadas ao longo do jogo, como a de atacar, imprimir tabuleiro e posicionar os navios.
 
 Theo lindo e cheiroso <3.
-//////////
+///////////
