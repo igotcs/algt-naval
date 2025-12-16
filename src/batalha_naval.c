@@ -107,13 +107,14 @@ int main() {
                 int fim2 = 1;
 
                 while (1) {
-                int resultadoatk;
+                int resultadoatk=0;
                 fim1 = 1;
                 fim2 = 1;
 
                 if (jogadorAtual == 1) {
                 printf("Vez de %s\n", jogador1);
                 printTabuleiro(tabuleiro2, 0);
+            do{     
                 printf("Digite as coordenadas do alvo (Ex: 4 F): ");
                 scanf("%d %c", &lin_ataque, &cl_ataque);
 
@@ -123,12 +124,15 @@ int main() {
                 acertos1++;
                 else if (resultadoatk == 2)
                  erros1++;
+            }while(resultadoatk==0);
 
                 jogadorAtual = 2;
             }
             else {
                 printf("Vez de %s\n", jogador2);
                 printTabuleiro(tabuleiro1, 0);
+                resultadoatk=0;
+                do{
                 printf("Digite as coordenadas do alvo (Ex: 4 B): ");
                 scanf("%d %c", &lin_ataque, &cl_ataque);
 
@@ -138,7 +142,7 @@ int main() {
                  acertos2++;
                 else if (resultadoatk == 2)
                  erros2++;
-
+                }while(resultadoatk==0);
                 jogadorAtual = 1;
             }
 
